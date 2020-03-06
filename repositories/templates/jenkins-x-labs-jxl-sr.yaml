@@ -1,0 +1,21 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: jenkins-x-labs
+    provider: github
+    repository: jxl
+  name: jenkins-x-labs-jxl
+spec:
+  description: Imported application for jenkins-x-labs/jxl
+  httpCloneURL: https://github.com/jenkins-x-labs/jxl.git
+  org: jenkins-x-labs
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: jxl
+  scheduler:
+    kind: ""
+    name: ""
+  url: https://github.com/jenkins-x-labs/jxl.git
