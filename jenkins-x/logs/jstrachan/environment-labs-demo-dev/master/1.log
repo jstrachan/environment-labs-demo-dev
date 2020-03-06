@@ -1,0 +1,344 @@
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-credential-initializer-t5scq[0m
+{"level":"warn","ts":1583504925.2713437,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1583504925.2721395,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-working-dir-initializer-2gwst[0m
+{"level":"warn","ts":1583504925.769393,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1583504925.770759,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-git-source-jstrachan-environment-labs-demo-pqsfd-mhmqw[0m
+{"level":"warn","ts":1583504964.9812264,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1583504966.0533142,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*********/environment-labs-demo-dev.git @ v0.0.1 in path /workspace/source"}
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:ebe44bf12284e20c6d538f5d60c4ef1c73f4cf53
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-validate-git[0m
+Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-verify-preinstall[0m
+no need to reconnect to cluster
+writing the following to the OWNERS file for the development environment repository:
+approvers:
+- *********
+reviewers:
+- *********
+WARNING: TLS is not enabled so your webhooks will be called using HTTP. This means your webhook secret will be sent to your cluster in the clear. See https://jenkins-x.io/docs/getting-started/setup/boot/#ingress for more information
+Verifying the kubernetes cluster before we try to boot Jenkins X in namespace: **
+Trying to lazily create any missing resources to get the current cluster ready to boot Jenkins X
+Verifying Ingress...
+Clearing the domain 34.76.166.42.nip.io as when using auto-DNS domains we need to regenerate to ensure its always accurate in case the cluster or ingress service is recreated
+
+Using namespace '**' from context named '' on server ''.
+
+Verifying Storage...
+WARNING: Your requirements have not enabled cloud storage for logs - we recommend enabling this for kubernetes provider gke
+WARNING: Your requirements have not enabled cloud storage for reports - we recommend enabling this for kubernetes provider gke
+WARNING: Your requirements have not enabled cloud storage for repository - we recommend enabling this for kubernetes provider gke
+WARNING: Your requirements have not enabled cloud storage for backup - we recommend enabling this for kubernetes provider gke
+Storage configuration looks good
+
+Validating Kaniko secret in namespace **
+
+verified there is a ConfigMap config in namespace **
+verified there is a ConfigMap plugins in namespace **
+Cluster looks good, you are ready to '** boot' now!
+
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-install-jx-crds[0m
+Jenkins X CRDs upgraded with success
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-generate-helmfile[0m
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-helmfile-system[0m
+Adding repo stable https://kubernetes-charts.storage.googleapis.com
+"stable" has been added to your repositories
+
+Updating repo
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "stable" chart repository
+Update Complete. ⎈ Happy Helming!⎈ 
+
+Affected releases are:
+  nginx-ingress (stable/nginx-ingress) UPDATED
+
+Upgrading release=nginx-ingress, chart=stable/nginx-ingress
+Release "nginx-ingress" has been upgraded. Happy Helming!
+NAME: nginx-ingress
+LAST DEPLOYED: Fri Mar  6 14:29:56 2020
+NAMESPACE: nginx
+STATUS: deployed
+REVISION: 8
+TEST SUITE: None
+NOTES:
+The nginx-ingress controller has been installed.
+It may take a few minutes for the LoadBalancer IP to be available.
+You can watch the status by running 'kubectl --namespace nginx get services -o wide -w nginx-ingress-controller'
+
+An example Ingress that makes use of the controller:
+
+  apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    name: example
+    namespace: foo
+  spec:
+    rules:
+      - host: www.example.com
+        http:
+          paths:
+            - backend:
+                serviceName: exampleService
+                servicePort: 80
+              path: /
+    # This section is only required if TLS is to be enabled for the Ingress
+    tls:
+        - hosts:
+            - www.example.com
+          secretName: example-tls
+
+If TLS is enabled for the Ingress, a Secret containing the certificate and key must also be provided:
+
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: example-tls
+    namespace: foo
+  data:
+    tls.crt: <base64 encoded cert>
+    tls.key: <base64 encoded key>
+  type: kubernetes.io/tls
+
+Listing releases matching ^nginx-ingress$
+nginx-ingress	nginx    	8       	2020-03-06 14:29:56.301408371 +0000 UTC	deployed	nginx-ingress-1.33.3	0.30.0     
+
+
+UPDATED RELEASES:
+NAME            CHART                  VERSION
+nginx-ingress   stable/nginx-ingress    1.33.3
+
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-verify-ingress[0m
+Waiting to find the external host name of the ingress controller Service in namespace nginx with name nginx-ingress-controller
+No domain flag provided so using default 34.76.166.42.nip.io to generate Ingress rules
+defaulting the domain to 34.76.166.42.nip.io and modified /workspace/source/**-requirements.yml
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-helmfile-apps[0m
+Adding repo jenkins-x https://storage.googleapis.com/chartmuseum.jenkins-x.io
+"jenkins-x" has been added to your repositories
+
+Updating repo
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "jenkins-x" chart repository
+...Successfully got an update from the "stable" chart repository
+Update Complete. ⎈ Happy Helming!⎈ 
+
+Building dependency release=repositories, chart=../repositories
+Affected releases are:
+  chartmuseum (jenkins-x/chartmuseum) UPDATED
+  **boot-helmfile-resources (jenkins-x/**boot-helmfile-resources) UPDATED
+  lighthouse (jenkins-x/lighthouse) UPDATED
+  nexus (jenkins-x/nexus) UPDATED
+  repositories (../repositories) UPDATED
+  tekton (jenkins-x/tekton) UPDATED
+
+Upgrading release=tekton, chart=jenkins-x/tekton
+Upgrading release=**boot-helmfile-resources, chart=jenkins-x/**boot-helmfile-resources
+Upgrading release=chartmuseum, chart=jenkins-x/chartmuseum
+Upgrading release=repositories, chart=../repositories
+Upgrading release=nexus, chart=jenkins-x/nexus
+Upgrading release=lighthouse, chart=jenkins-x/lighthouse
+Release "repositories" has been upgraded. Happy Helming!
+NAME: repositories
+LAST DEPLOYED: Fri Mar  6 14:30:05 2020
+NAMESPACE: **
+STATUS: deployed
+REVISION: 8
+TEST SUITE: None
+
+Listing releases matching ^repositories$
+repositories	**       	8       	2020-03-06 14:30:05.520238781 +0000 UTC	deployed	repositories-1	           
+
+Listing releases matching ^chartmuseum$
+Release "chartmuseum" has been upgraded. Happy Helming!
+NAME: chartmuseum
+LAST DEPLOYED: Fri Mar  6 14:30:09 2020
+NAMESPACE: **
+STATUS: deployed
+REVISION: 8
+TEST SUITE: None
+NOTES:
+** Please be patient while the chart is being deployed **
+
+Get the ChartMuseum URL by running:
+
+  export POD_NAME=$(kubectl get pods --namespace ** -l "app=chartmuseum" -l "release=chartmuseum" -o jsonpath="{.items[0].metadata.name}")
+  echo http://127.0.0.1:8080/
+  kubectl port-forward $POD_NAME 8080:8080 --namespace **
+
+Release "nexus" has been upgraded. Happy Helming!
+NAME: nexus
+LAST DEPLOYED: Fri Mar  6 14:30:10 2020
+NAMESPACE: **
+STATUS: deployed
+REVISION: 8
+TEST SUITE: None
+NOTES:
+It may take a few minutes for Nexus to become ready
+
+Listing releases matching ^nexus$
+chartmuseum	**       	8       	2020-03-06 14:30:09.601824498 +0000 UTC	deployed	chartmuseum-1.1.5	0.7.1      
+
+Release "tekton" has been upgraded. Happy Helming!
+NAME: tekton
+LAST DEPLOYED: Fri Mar  6 14:30:09 2020
+NAMESPACE: **
+STATUS: deployed
+REVISION: 8
+TEST SUITE: None
+NOTES:
+Tekton Pipelines
+
+Listing releases matching ^tekton$
+nexus	**       	8       	2020-03-06 14:30:10.146490465 +0000 UTC	deployed	nexus-0.1.21	           
+
+tekton	**       	8       	2020-03-06 14:30:09.902104936 +0000 UTC	deployed	tekton-0.0.48	           
+
+Release "**boot-helmfile-resources" has been upgraded. Happy Helming!
+NAME: **boot-helmfile-resources
+LAST DEPLOYED: Fri Mar  6 14:30:10 2020
+NAMESPACE: **
+STATUS: deployed
+REVISION: 8
+TEST SUITE: None
+
+Listing releases matching ^**boot-helmfile-resources$
+**boot-helmfile-resources	**       	8       	2020-03-06 14:30:10.107585024 +0000 UTC	deployed	**boot-helmfile-resources-0.0.83	           
+
+Release "lighthouse" has been upgraded. Happy Helming!
+NAME: lighthouse
+LAST DEPLOYED: Fri Mar  6 14:30:10 2020
+NAMESPACE: **
+STATUS: deployed
+REVISION: 8
+TEST SUITE: None
+NOTES:
+Get the application URL by running these commands:
+
+kubectl get ingress lighthouse-lighthouse
+
+Listing releases matching ^lighthouse$
+lighthouse	**       	8       	2020-03-06 14:30:10.276744002 +0000 UTC	deployed	lighthouse-0.0.476	0.0.476    
+
+
+UPDATED RELEASES:
+NAME                        CHART                                 VERSION
+repositories                ../repositories                             1
+chartmuseum                 jenkins-x/chartmuseum                   1.1.5
+nexus                       jenkins-x/nexus                        0.1.21
+tekton                      jenkins-x/tekton                       0.0.48
+**boot-helmfile-resources   jenkins-x/**boot-helmfile-resources    0.0.83
+lighthouse                  jenkins-x/lighthouse                  0.0.476
+
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-git-creds[0m
+Generated Git credentials file /builder/home/git/credentials
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-verify-jenkins-x-environment[0m
+Storing the requirements in team settings in the dev environment
+Validating git repository for dev environment at URL https://github.com/*********/environment-labs-demo-dev.git
+Validating git repository for production environment at URL https://github.com/*********/environment-labs-demo-production.git
+Using Git provider github at https://github.com
+? Using Git user name: *********
+? Using organisation: *********
+Creating repository *********/environment-labs-demo-production
+Git repository *********/environment-labs-demo-production already exists
+WARNING: WARNING: Could not find a Makefile in /tmp/**-env-repo-195295744/*********/environment-labs-demo-production
+Pushed Git repository to https://github.com/*********/environment-labs-demo-production
+
+Validating git repository for staging environment at URL https://github.com/*********/environment-labs-demo-staging.git
+Using Git provider github at https://github.com
+? Using Git user name: *********
+? Using organisation: *********
+Creating repository *********/environment-labs-demo-staging
+Git repository *********/environment-labs-demo-staging already exists
+WARNING: WARNING: Could not find a Makefile in /tmp/**-env-repo-846487391/*********/environment-labs-demo-staging
+Pushed Git repository to https://github.com/*********/environment-labs-demo-staging
+
+Environment git repositories look good
+
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-install-pipelines[0m
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-update-webhooks[0m
+DEBUG: Finding service url for hook in namespace **
+DEBUG: Couldn't find service url, attempting to look up via ingress
+DEBUG: found service url http://hook-**.34.76.166.42.nip.io
+Updating webhooks for Owner: ********* and Repository: environment-labs-demo-dev in git server: https://github.com
+Checking hooks for repository *********/environment-labs-demo-dev with user *********
+Found matching hook for url http://hook-**.34.76.166.42.nip.io/hook
+Updating GitHub webhook for *********/environment-labs-demo-dev for url http://hook-**.34.76.166.42.nip.io/hook
+Updating webhooks for Owner: ********* and Repository: environment-labs-demo-production in git server: https://github.com
+Checking hooks for repository *********/environment-labs-demo-production with user *********
+Found matching hook for url http://hook-**.34.76.166.42.nip.io/hook
+Updating GitHub webhook for *********/environment-labs-demo-production for url http://hook-**.34.76.166.42.nip.io/hook
+Updating webhooks for Owner: ********* and Repository: environment-labs-demo-staging in git server: https://github.com
+Checking hooks for repository *********/environment-labs-demo-staging with user *********
+Found matching hook for url http://hook-**.34.76.166.42.nip.io/hook
+Updating GitHub webhook for *********/environment-labs-demo-staging for url http://hook-**.34.76.166.42.nip.io/hook
+
+Showing logs for build [32mjstrachan-environment-labs-demo-pqsfd-1[0m stage [32mrelease[0m and container [32mstep-verify-installation[0m
+verifying the Jenkins X installation in namespace **
+verifying pods
+Checking pod statuses
+POD                                                        STATUS
+jenkins-x-chartmuseum-7844b7b6cb-rqtrg                     Running
+**boot-helmfile-resources-controllerbuild-5f6d9f67d5-9sps5 Running
+**boot-helmfile-resources-controllerrole-7688dcbfd-qps4b   Running
+**boot-helmfile-resources-gcactivities-1583496000-dzw5v    Succeeded
+**boot-helmfile-resources-gcactivities-1583497800-78jc7    Succeeded
+**boot-helmfile-resources-gcpods-1583496000-cn7fm          Succeeded
+**boot-helmfile-resources-gcpods-1583497800-lnt4l          Succeeded
+**boot-helmfile-resources-gcpreviews-1583496000-5rdzs      Succeeded
+lighthouse-lighthouse-589bf6655d-j2vkd                     Running
+lighthouse-lighthouse-b5bd865cb-bdf6r                      Running
+lighthouse-lighthouse-b5bd865cb-lp8xx                      Running
+nexus-nexus-5f77cf7b86-l75k9                               Running
+tekton-pipelines-controller-666488cbd5-gtwsd               Running
+tide-d94d9d97-z4gf7                                        Running
+WARNING: the following pods are not ready:
+Running: lighthouse-lighthouse-589bf6655d-j2vkd
+
+Waiting 30m0s for the pods to become ready...
+
+WARNING: retrying after error: the following pods are not ready:
+Running: lighthouse-lighthouse-589bf6655d-j2vkd
+.
+.
+
+POD                                                        STATUS
+jenkins-x-chartmuseum-7844b7b6cb-rqtrg                     Running
+**boot-helmfile-resources-controllerbuild-5f6d9f67d5-9sps5 Running
+**boot-helmfile-resources-controllerrole-7688dcbfd-qps4b   Running
+**boot-helmfile-resources-gcactivities-1583496000-dzw5v    Succeeded
+**boot-helmfile-resources-gcactivities-1583497800-78jc7    Succeeded
+**boot-helmfile-resources-gcpods-1583496000-cn7fm          Succeeded
+**boot-helmfile-resources-gcpods-1583497800-lnt4l          Succeeded
+**boot-helmfile-resources-gcpreviews-1583496000-5rdzs      Succeeded
+lighthouse-lighthouse-b5bd865cb-bdf6r                      Running
+lighthouse-lighthouse-b5bd865cb-lp8xx                      Running
+nexus-nexus-5f77cf7b86-l75k9                               Running
+tekton-pipelines-controller-666488cbd5-gtwsd               Running
+tide-d94d9d97-z4gf7                                        Running
+Verifying the git config
+Verifying username ********* at git server github at https://github.com
+Found 21 organisations in git server https://github.com: CamelCookbook, FuseByExample, arcalos-dashboard, arcalos-environments, cb-kubecd, cloudbees, codeship, fabric8-updatebot, fusesource, jenkins-x, jenkins-x-apps, jenkins-x-buildpacks, jenkins-x-charts, jenkins-x-dashboard, jenkins-x-images, jenkins-x-labs, jenkins-x-quickstarts, jenkins-x-test-projects, jenkinsci, jenkinsx, petclinic-gcp
+Validated pipeline user ********* on git server https://github.com
+Git tokens seem to be setup correctly
+Installation is currently looking: GOOD
