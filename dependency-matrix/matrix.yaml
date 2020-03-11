@@ -17,3 +17,9 @@ dependencies:
   url: https://github.com/jenkins-x-labs/step-go-releaser.git
   version: ""
   versionURL: ""
+- host: github.com
+  owner: jstrachan
+  repo: nodey421
+  url: https://github.com/jstrachan/nodey421.git
+  version: ""
+  versionURL: ""
